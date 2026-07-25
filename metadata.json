@@ -1,0 +1,6 @@
+{
+  "name": "DealSaver - Coupons & Promo Codes",
+  "description": "RetailMeNot-inspired high-performance coupon and promo code aggregator optimized for speed, Google Ads Quality Score compliance, and rich store discounts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
