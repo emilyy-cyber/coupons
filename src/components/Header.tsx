@@ -103,8 +103,8 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center space-x-2 text-left cursor-pointer shrink-0"
               id="header-logo-btn"
             >
-              <div className="text-2xl font-extrabold tracking-tight text-[#1A1A1A]">
-                DEAL<span className="text-[#F04D23]">SAVER</span>
+              <div className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#1A1A1A]">
+                10 OFF<span className="text-[#F04D23]"> PROMO CODES</span>
               </div>
             </button>
 

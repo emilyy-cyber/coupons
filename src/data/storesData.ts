@@ -63,7 +63,7 @@ export const storesData: Store[] = [
     faqs: [
       {
         question: 'How do I use a Walmart promo code online?',
-        answer: 'During checkout on Walmart.com or the Walmart app, navigate to the Payment Method step. Look for the "Add Promo Code" box, paste your verified code from DealSaver, and click Apply.'
+        answer: 'During checkout on Walmart.com or the Walmart app, navigate to the Payment Method step. Look for the "Add Promo Code" box, paste your verified code from 10 Off Promo Codes, and click Apply.'
       },
       {
         question: 'Does Walmart offer free shipping promo codes?',

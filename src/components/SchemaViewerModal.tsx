@@ -16,7 +16,7 @@ export const SchemaViewerModal: React.FC<SchemaViewerModalProps> = ({ isOpen, on
     "@context": "https://schema.org",
     "@type": "AggregateOffer",
     "name": `${storeName} Verified Coupons & Promo Codes`,
-    "description": `Save at ${storeName} with verified discount codes, free shipping coupons, and daily deals on DealSaver.`,
+    "description": `Save at ${storeName} with verified discount codes, free shipping coupons, and daily deals on 10 Off Promo Codes.`,
     "priceCurrency": "USD",
     "lowPrice": "0.00",
     "highPrice": "300.00",

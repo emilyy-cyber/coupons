@@ -55,7 +55,7 @@ export const TrustPagesModal: React.FC<TrustPagesModalProps> = ({ isOpen, type, 
           {type === 'privacy' && (
             <>
               <p>
-                At DealSaver, we respect your privacy. This Privacy Policy details how we collect, use, and protect your information when visiting our website.
+                At 10 Off Promo Codes, we respect your privacy. This Privacy Policy details how we collect, use, and protect your information when visiting our website.
               </p>
               <h3 className="font-extrabold text-gray-900 text-sm">1. Data Collection</h3>
               <p>
@@ -75,15 +75,15 @@ export const TrustPagesModal: React.FC<TrustPagesModalProps> = ({ isOpen, type, 
           {type === 'terms' && (
             <>
               <p>
-                By accessing DealSaver, you agree to these Terms of Service. Please read them carefully.
+                By accessing 10 Off Promo Codes, you agree to these Terms of Service. Please read them carefully.
               </p>
               <h3 className="font-extrabold text-gray-900 text-sm">1. Coupon Accuracy</h3>
               <p>
-                DealSaver tests promo codes daily. However, store promotions are subject to merchant modification or early expiration without prior notice.
+                10 Off Promo Codes tests promo codes daily. However, store promotions are subject to merchant modification or early expiration without prior notice.
               </p>
               <h3 className="font-extrabold text-gray-900 text-sm">2. Intellectual Property</h3>
               <p>
-                All store logos and brand marks referenced on DealSaver remain the registered trademarks of their respective owners.
+                All store logos and brand marks referenced on 10 Off Promo Codes remain the registered trademarks of their respective owners.
               </p>
             </>
           )}
@@ -96,7 +96,7 @@ export const TrustPagesModal: React.FC<TrustPagesModalProps> = ({ isOpen, type, 
                   Google Ads Quality Score Compliance Statement
                 </h3>
                 <p>
-                  DealSaver strictly adheres to Google Ads policies regarding message match, landing page relevance, and user transparency.
+                  10 Off Promo Codes strictly adheres to Google Ads policies regarding message match, landing page relevance, and user transparency.
                 </p>
               </div>
               <ul className="list-disc pl-5 space-y-1.5">

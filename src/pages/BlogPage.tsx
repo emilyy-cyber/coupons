@@ -98,7 +98,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ selectedPostId, onNavigate }
             <div className="p-2 bg-orange-50 border border-[#E5E7EB] rounded-lg text-[#F04D23]">
               <BookOpen className="w-5 h-5" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A]">DealSaver Savings Guides</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A]">10 Off Promo Codes Savings Guides</h1>
           </div>
           <p className="text-xs sm:text-sm text-[#6B7280] max-w-2xl mt-2">
             Smart shopping strategies, coupon stacking rules, store clearance schedules, and Google Ads Quality Score insights.

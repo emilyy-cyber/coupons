@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Brand & Links */}
         <div className="flex flex-wrap items-center gap-6">
           <div className="font-extrabold text-base text-[#1A1A1A] tracking-tight mr-2">
-            DEAL<span className="text-[#F04D23]">SAVER</span>
+            10 OFF<span className="text-[#F04D23]"> PROMO CODES</span>
           </div>
 
           <button
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Copyright */}
         <div className="text-right">
-          © 2026 DealSaver Media. All rights reserved. • Optimized for Speed & Quality Score
+          © 2026 10 Off Promo Codes. All rights reserved. • Optimized for Speed & Quality Score
         </div>
 
       </div>
