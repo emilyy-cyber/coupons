@@ -73,7 +73,12 @@ const parseUrlRoute = (): RouteState => {
 
   // Check if pathname matches a direct store slug or store id (e.g. /get-10-off-at-dicks-sporting-goods-today)
   const matchedStore = storesData.find(
-    (s) => s.slug === pathname || s.id === pathname || `get-10-off-at-${s.id}-today` === pathname
+    (s) => 
+      s.slug?.toLowerCase() === pathname || 
+      s.id.toLowerCase() === pathname || 
+      `get-10-off-at-${s.id}-today` === pathname ||
+      route === s.slug?.toLowerCase() ||
+      route === s.id.toLowerCase()
   );
   if (matchedStore) {
     return { tab: 'store', param: matchedStore.id };
