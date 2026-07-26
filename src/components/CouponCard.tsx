@@ -1,18 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Coupon } from '../types';
-import { ShieldCheck, Flame, Scissors, ArrowRight, ExternalLink, ThumbsUp, Clock } from 'lucide-react';
+import { ShieldCheck, Flame, Scissors, ExternalLink, ThumbsUp, Clock, Check, Copy } from 'lucide-react';
+import { copyToClipboard } from '../utils/clipboard';
+import { getConditionalOutboundUrl } from '../utils/geoIp';
 
 interface CouponCardProps {
   coupon: Coupon;
-  onOpenModal: (coupon: Coupon) => void;
+  onOpenModal?: (coupon: Coupon) => void;
   onStoreClick?: (storeId: string) => void;
 }
 
 export const CouponCard: React.FC<CouponCardProps> = ({ coupon, onOpenModal, onStoreClick }) => {
   const isCode = coupon.type === 'code' && coupon.code;
+  const [copied, setCopied] = useState(false);
+
+  const handleActionClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    // 1. Get destination URL synchronously (US = affiliate, Non-US = clean official store)
+    const targetUrl = getConditionalOutboundUrl(coupon.storeId, coupon.outboundUrl);
+
+    // 2. Copy code if present
+    if (coupon.code) {
+      copyToClipboard(coupon.code);
+    }
+
+    // 3. Set revealed / copied state on the card immediately
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 5000);
+
+    // 4. Open affiliate link in a new tab directly in click event (prevents popup blocker)
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
-    <div className="bg-white border border-[#E5E7EB] rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 hover:border-[#F04D23]/40 transition-colors">
+    <div className="bg-white border border-[#E5E7EB] rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 hover:border-[#F04D23]/40 transition-colors relative">
       
       {/* Exclusive / Staff Pick Badge */}
       {coupon.isExclusive && (
@@ -46,7 +70,7 @@ export const CouponCard: React.FC<CouponCardProps> = ({ coupon, onOpenModal, onS
               </button>
             )}
 
-            {/* Verified Badge (Clean Minimalism style: ✓ Verified • X Uses) */}
+            {/* Verified Badge */}
             <span className="text-[#10B981] text-[11px] font-bold uppercase tracking-wide flex items-center">
               <ShieldCheck className="w-3.5 h-3.5 mr-1 text-[#10B981]" />
               ✓ Verified • {coupon.usedCountToday} Uses
@@ -61,13 +85,27 @@ export const CouponCard: React.FC<CouponCardProps> = ({ coupon, onOpenModal, onS
             )}
           </div>
 
-          <h3 className="text-base sm:text-lg font-bold text-[#1A1A1A] leading-snug hover:text-[#F04D23] transition-colors cursor-pointer" onClick={() => onOpenModal(coupon)}>
+          <h3 
+            className="text-base sm:text-lg font-bold text-[#1A1A1A] leading-snug hover:text-[#F04D23] transition-colors cursor-pointer" 
+            onClick={handleActionClick}
+          >
             {coupon.title}
           </h3>
 
           <p className="text-xs sm:text-[13px] text-[#6B7280] mt-1 line-clamp-2 leading-relaxed">
             {coupon.description}
           </p>
+
+          {/* Code Revealed Inline Box when clicked */}
+          {copied && isCode && (
+            <div className="mt-2.5 inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-md animate-in fade-in duration-200">
+              <Check className="w-4 h-4 text-emerald-600" />
+              <span>Copied to Clipboard:</span>
+              <span className="font-mono bg-white px-2 py-0.5 rounded border border-emerald-300 text-emerald-900 font-extrabold text-sm tracking-widest select-all">
+                {coupon.code}
+              </span>
+            </div>
+          )}
 
           {/* Success Rate & Expiry */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#6B7280] mt-2 font-medium">
@@ -83,14 +121,23 @@ export const CouponCard: React.FC<CouponCardProps> = ({ coupon, onOpenModal, onS
         </div>
       </div>
 
-      {/* Action Button (GET CODE / GET DEAL style: bg-[#F04D23], 6px radius) */}
+      {/* Action Button: DIRECT CLICK (No Pop-up) */}
       <div className="w-full md:w-auto shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#E5E7EB]">
         <button
-          onClick={() => onOpenModal(coupon)}
-          className="w-full md:w-auto bg-[#F04D23] hover:bg-[#d83f19] text-white font-bold text-sm px-5 py-3 rounded-md transition-colors cursor-pointer whitespace-nowrap flex items-center justify-center space-x-2"
+          onClick={handleActionClick}
+          className={`w-full md:w-auto font-bold text-sm px-5 py-3 rounded-md transition-all cursor-pointer whitespace-nowrap flex items-center justify-center space-x-2 ${
+            copied
+              ? 'bg-[#10B981] text-white shadow-sm'
+              : 'bg-[#F04D23] hover:bg-[#d83f19] text-white'
+          }`}
           id={`coupon-btn-${coupon.id}`}
         >
-          {isCode ? (
+          {copied ? (
+            <>
+              <Check className="w-4 h-4 text-white" />
+              <span>{isCode ? `CODE: ${coupon.code}` : 'DEAL ACTIVATED!'}</span>
+            </>
+          ) : isCode ? (
             <>
               <Scissors className="w-4 h-4 text-white -rotate-90" />
               <span>GET CODE</span>
