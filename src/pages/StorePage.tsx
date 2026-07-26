@@ -111,6 +111,9 @@ export const StorePage: React.FC<StorePageProps> = ({
           storeName={store.name}
           topDiscount={store.topDiscount}
           activeCount={store.activeOffersCount}
+          storeId={store.id}
+          topOutboundUrl={storeCoupons[0]?.outboundUrl || store.websiteUrl}
+          topCouponCode={storeCoupons[0]?.code}
         />
 
         {/* Main Coupons List & Sidebar Layout */}

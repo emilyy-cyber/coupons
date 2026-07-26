@@ -25,8 +25,12 @@ export const CouponModal: React.FC<CouponModalProps> = ({ coupon, onClose }) => 
       setTimeout(() => setCopied(false), 4000);
     }
 
-    // Open target window synchronously directly inside the click event to prevent popup blockers
-    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    // Open target link: GET CODE in current/back tab, GET DEAL in new/next tab
+    if (coupon.code) {
+      window.location.href = targetUrl;
+    } else {
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
