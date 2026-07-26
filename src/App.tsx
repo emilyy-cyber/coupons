@@ -14,6 +14,7 @@ import { SearchPage } from './pages/SearchPage';
 import { BlogPage } from './pages/BlogPage';
 
 import { Coupon } from './types';
+import { storesData } from './data/storesData';
 import { initGeoIp } from './utils/geoIp';
 
 interface RouteState {
@@ -35,16 +36,20 @@ const parseUrlRoute = (): RouteState => {
     if (route === 'search' && param) return { tab: 'search', param: decodeURIComponent(param) };
     if (route === 'blog') return param ? { tab: 'blog-post', param } : { tab: 'blog' };
     if (route === 'home' || route === '') return { tab: 'home' };
+
+    // Check if hash matches a store slug directly
+    const hashStore = storesData.find((s) => s.slug === route || s.id === route);
+    if (hashStore) return { tab: 'store', param: hashStore.id };
   }
 
   // Standard HTML5 Path Routing
-  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
   if (!pathname) {
     return { tab: 'home' };
   }
 
   const parts = pathname.split('/');
-  const route = parts[0].toLowerCase();
+  const route = parts[0];
   const param = parts.slice(1).join('/');
 
   if (route === 'store' && param) {
@@ -64,6 +69,14 @@ const parseUrlRoute = (): RouteState => {
       return { tab: 'blog-post', param };
     }
     return { tab: 'blog' };
+  }
+
+  // Check if pathname matches a direct store slug or store id (e.g. /get-10-off-at-dicks-sporting-goods-today)
+  const matchedStore = storesData.find(
+    (s) => s.slug === pathname || s.id === pathname || `get-10-off-at-${s.id}-today` === pathname
+  );
+  if (matchedStore) {
+    return { tab: 'store', param: matchedStore.id };
   }
 
   return { tab: 'home' };
@@ -139,7 +152,13 @@ export default function App() {
     if (tab === 'home') {
       targetPath = '/';
     } else if (tab === 'store' && param) {
-      targetPath = `/store/${param}`;
+      const store = storesData.find((s) => s.id === param || s.slug === param);
+      const slug = store ? (store.slug || store.id) : param;
+      if (slug.startsWith('get-10-off-at-')) {
+        targetPath = `/${slug}/`;
+      } else {
+        targetPath = `/store/${slug}`;
+      }
     } else if (tab === 'category' && param) {
       targetPath = `/category/${param}`;
     } else if (tab === 'categories') {

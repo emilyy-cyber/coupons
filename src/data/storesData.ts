@@ -4,7 +4,7 @@ export const storesData: Store[] = [
   {
     id: 'dicks-sporting-goods',
     name: "Dick's Sporting Goods",
-    slug: 'dicks-sporting-goods',
+    slug: 'get-10-off-at-dicks-sporting-goods-today',
     logo: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=200&q=80',
     bgAccentColor: '#154734',
     rating: 4.8,
