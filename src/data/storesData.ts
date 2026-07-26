@@ -35,7 +35,7 @@ export const storesData: Store[] = [
         answer: "Yes, Dick's Sporting Goods offers free standard shipping for ScoreCard members on eligible orders of $49 or more."
       }
     ],
-    websiteUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    websiteUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
     isTrending: true,
     isPopular: true,
   },

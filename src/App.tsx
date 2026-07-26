@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CouponModal } from './components/CouponModal';
@@ -14,6 +14,7 @@ import { SearchPage } from './pages/SearchPage';
 import { BlogPage } from './pages/BlogPage';
 
 import { Coupon } from './types';
+import { initGeoIp } from './utils/geoIp';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<'home' | 'store' | 'category' | 'categories' | 'search' | 'blog' | 'blog-post'>('home');
@@ -21,6 +22,11 @@ export default function App() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('electronics');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedBlogPostId, setSelectedBlogPostId] = useState<string>('1');
+
+  // Pre-fetch Geo-IP location on initial app render
+  useEffect(() => {
+    initGeoIp();
+  }, []);
 
   // Modals state
   const [activeCoupon, setActiveCoupon] = useState<Coupon | null>(null);

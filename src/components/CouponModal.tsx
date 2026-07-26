@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Coupon } from '../types';
-import { X, Copy, Check, ExternalLink, ThumbsUp, ThumbsDown, ShieldCheck, Sparkles, Clock, AlertCircle } from 'lucide-react';
+import { X, Copy, Check, ExternalLink, ThumbsUp, ThumbsDown, ShieldCheck, Sparkles, Clock } from 'lucide-react';
+import { copyToClipboard } from '../utils/clipboard';
+import { getConditionalOutboundUrl } from '../utils/geoIp';
 
 interface CouponModalProps {
   coupon: Coupon | null;
@@ -14,19 +16,17 @@ export const CouponModal: React.FC<CouponModalProps> = ({ coupon, onClose }) => 
   const [feedbackGiven, setFeedbackGiven] = useState<'yes' | 'no' | null>(null);
 
   const handleCopyCode = () => {
-    if (coupon.code) {
-      navigator.clipboard.writeText(coupon.code);
-      setCopied(true);
-      
-      // Simulate opening merchant store tab
-      setTimeout(() => {
-        window.open(coupon.outboundUrl, '_blank', 'noopener,noreferrer');
-      }, 800);
+    // Determine destination URL synchronously based on pre-cached visitor location
+    const targetUrl = getConditionalOutboundUrl(coupon.storeId, coupon.outboundUrl);
 
+    if (coupon.code) {
+      copyToClipboard(coupon.code);
+      setCopied(true);
       setTimeout(() => setCopied(false), 4000);
-    } else {
-      window.open(coupon.outboundUrl, '_blank', 'noopener,noreferrer');
     }
+
+    // Open target window synchronously directly inside the click event to prevent popup blockers
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

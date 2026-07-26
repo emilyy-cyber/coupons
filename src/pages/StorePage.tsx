@@ -5,6 +5,7 @@ import { CouponCard } from '../components/CouponCard';
 import { AdMessageMatchBanner } from '../components/AdMessageMatchBanner';
 import { Coupon, Store } from '../types';
 import { ShieldCheck, Star, ExternalLink, HelpCircle, Lightbulb, ChevronDown, ChevronUp, FileCode, ArrowLeft } from 'lucide-react';
+import { getConditionalOutboundUrl } from '../utils/geoIp';
 
 interface StorePageProps {
   storeId: string;
@@ -234,7 +235,7 @@ export const StorePage: React.FC<StorePageProps> = ({
                 <div className="flex justify-between py-1 border-b border-[#E5E7EB]">
                   <span className="font-medium text-gray-500">Website</span>
                   <a
-                    href={store.websiteUrl}
+                    href={getConditionalOutboundUrl(store.id, store.websiteUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-bold text-[#F04D23] hover:underline flex items-center"
@@ -261,7 +262,7 @@ export const StorePage: React.FC<StorePageProps> = ({
               </div>
 
               <a
-                href={store.websiteUrl}
+                href={getConditionalOutboundUrl(store.id, store.websiteUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#1A1A1A] hover:bg-black text-white text-xs font-bold py-3 rounded-md flex items-center justify-center space-x-2 transition-colors cursor-pointer"

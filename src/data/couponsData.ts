@@ -22,7 +22,7 @@ export const couponsData: Coupon[] = [
     terms: 'Valid on qualifying online orders only. Excludes select restricted brands.',
     usedCountToday: 642,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-2',
@@ -42,7 +42,7 @@ export const couponsData: Coupon[] = [
     terms: 'On Going Offer. Discount applied at checkout on qualifying items.',
     usedCountToday: 410,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-3',
@@ -63,7 +63,7 @@ export const couponsData: Coupon[] = [
     terms: 'Minimum purchase of $100 required before taxes and shipping fees.',
     usedCountToday: 385,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-4',
@@ -83,7 +83,7 @@ export const couponsData: Coupon[] = [
     terms: 'Valid on select promotional and sale items.',
     usedCountToday: 290,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-5',
@@ -104,7 +104,7 @@ export const couponsData: Coupon[] = [
     terms: 'Clearance items only. While supplies last.',
     usedCountToday: 780,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-6',
@@ -123,7 +123,7 @@ export const couponsData: Coupon[] = [
     terms: 'Prices as marked. On Going Offer.',
     usedCountToday: 530,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-7',
@@ -142,7 +142,7 @@ export const couponsData: Coupon[] = [
     terms: 'Discount applied automatically at checkout.',
     usedCountToday: 310,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-8',
@@ -162,7 +162,7 @@ export const couponsData: Coupon[] = [
     terms: 'Valid on qualifying orders $65 or more. Freight fees may apply on oversized items.',
     usedCountToday: 920,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-9',
@@ -181,7 +181,7 @@ export const couponsData: Coupon[] = [
     terms: 'New email subscribers only. Single use promotion.',
     usedCountToday: 710,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-10',
@@ -200,7 +200,7 @@ export const couponsData: Coupon[] = [
     terms: 'Discount applied automatically on qualifying women’s apparel & shoes.',
     usedCountToday: 490,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   {
     id: 'dicks-11',
@@ -219,7 +219,7 @@ export const couponsData: Coupon[] = [
     terms: 'On Going Offer. Valid while supplies last.',
     usedCountToday: 380,
     category: 'sports-outdoors',
-    outboundUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    outboundUrl: 'https://on.ltk.com/+d9Uc50ECp-tQu2pFYZ49ew',
   },
   // WALMART
   {
