@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CouponModal } from './components/CouponModal';
@@ -15,6 +15,59 @@ import { BlogPage } from './pages/BlogPage';
 
 import { Coupon } from './types';
 import { initGeoIp } from './utils/geoIp';
+
+interface RouteState {
+  tab: 'home' | 'store' | 'category' | 'categories' | 'search' | 'blog' | 'blog-post';
+  param?: string;
+}
+
+const parseUrlRoute = (): RouteState => {
+  // Check hash fallback first if user opened old hash URL
+  const hash = window.location.hash.replace(/^#\/?/, '').trim();
+  if (hash) {
+    const parts = hash.split('/');
+    const route = parts[0].toLowerCase();
+    const param = parts.slice(1).join('/');
+
+    if (route === 'store' && param) return { tab: 'store', param };
+    if (route === 'category' && param) return { tab: 'category', param };
+    if (route === 'categories') return { tab: 'categories' };
+    if (route === 'search' && param) return { tab: 'search', param: decodeURIComponent(param) };
+    if (route === 'blog') return param ? { tab: 'blog-post', param } : { tab: 'blog' };
+    if (route === 'home' || route === '') return { tab: 'home' };
+  }
+
+  // Standard HTML5 Path Routing
+  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  if (!pathname) {
+    return { tab: 'home' };
+  }
+
+  const parts = pathname.split('/');
+  const route = parts[0].toLowerCase();
+  const param = parts.slice(1).join('/');
+
+  if (route === 'store' && param) {
+    return { tab: 'store', param };
+  }
+  if (route === 'category' && param) {
+    return { tab: 'category', param };
+  }
+  if (route === 'categories') {
+    return { tab: 'categories' };
+  }
+  if (route === 'search' && param) {
+    return { tab: 'search', param: decodeURIComponent(param) };
+  }
+  if (route === 'blog') {
+    if (param) {
+      return { tab: 'blog-post', param };
+    }
+    return { tab: 'blog' };
+  }
+
+  return { tab: 'home' };
+};
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<'home' | 'store' | 'category' | 'categories' | 'search' | 'blog' | 'blog-post'>('home');
@@ -35,7 +88,8 @@ export default function App() {
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [trustModalType, setTrustModalType] = useState<'privacy' | 'terms' | 'contact' | 'ads' | null>(null);
 
-  const handleNavigate = (tab: string, param?: string) => {
+  const applyRoute = useCallback((routeState: RouteState) => {
+    const { tab, param } = routeState;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (tab === 'home') {
@@ -47,7 +101,8 @@ export default function App() {
       setSelectedCategoryId(param);
       setCurrentTab('category');
     } else if (tab === 'categories') {
-      setCurrentTab('category');
+      setSelectedCategoryId('all');
+      setCurrentTab('categories');
     } else if (tab === 'search' && param) {
       setSearchQuery(param);
       setCurrentTab('search');
@@ -57,6 +112,56 @@ export default function App() {
       setSelectedBlogPostId(param);
       setCurrentTab('blog-post');
     }
+  }, []);
+
+  // Sync state on route changes & initial mount
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const route = parseUrlRoute();
+      applyRoute(route);
+    };
+
+    // Sync initial route
+    syncFromUrl();
+
+    // Listen to browser navigation (back/forward)
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('hashchange', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('hashchange', syncFromUrl);
+    };
+  }, [applyRoute]);
+
+  const handleNavigate = (tab: string, param?: string) => {
+    let targetPath = '/';
+
+    if (tab === 'home') {
+      targetPath = '/';
+    } else if (tab === 'store' && param) {
+      targetPath = `/store/${param}`;
+    } else if (tab === 'category' && param) {
+      targetPath = `/category/${param}`;
+    } else if (tab === 'categories') {
+      targetPath = '/categories';
+    } else if (tab === 'search' && param) {
+      targetPath = `/search/${encodeURIComponent(param)}`;
+    } else if (tab === 'blog') {
+      targetPath = '/blog';
+    } else if (tab === 'blog-post' && param) {
+      targetPath = `/blog/${param}`;
+    }
+
+    // Clean up any remaining hash if present
+    if (window.location.hash) {
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
+    }
+    
+    applyRoute(parseUrlRoute());
   };
 
   return (
@@ -91,9 +196,9 @@ export default function App() {
           />
         )}
 
-        {currentTab === 'category' && (
+        {(currentTab === 'category' || currentTab === 'categories') && (
           <CategoryPage
-            categoryId={selectedCategoryId}
+            categoryId={currentTab === 'categories' ? 'all' : selectedCategoryId}
             onNavigate={handleNavigate}
             onOpenCouponModal={(coupon) => setActiveCoupon(coupon)}
           />
@@ -163,3 +268,4 @@ export default function App() {
     </div>
   );
 }
+
