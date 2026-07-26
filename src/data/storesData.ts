@@ -2,6 +2,44 @@ import { Store } from '../types';
 
 export const storesData: Store[] = [
   {
+    id: 'dicks-sporting-goods',
+    name: "Dick's Sporting Goods",
+    slug: 'dicks-sporting-goods',
+    logo: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=200&q=80',
+    bgAccentColor: '#154734',
+    rating: 4.8,
+    reviewCount: 15420,
+    averageSavings: '$25.00',
+    activeOffersCount: 11,
+    verifiedCodesCount: 5,
+    topDiscount: '70% OFF',
+    category: 'sports-outdoors',
+    description: "Save with verified Dick's Sporting Goods promo codes, $10 off email sign-up discounts, ScoreCard rewards, and clearance sales on activewear and gear.",
+    aboutContent: "Dick's Sporting Goods is America's premier sporting goods retailer, offering a vast selection of athletic apparel, footwear, camping gear, outdoor equipment, golf clubs, and team sports supplies.",
+    shoppingTips: [
+      "Sign up for Dick's email or text alerts to get an instant $10 OFF promo code on your $50+ purchase.",
+      "Join ScoreCard Rewards for free to earn 1 point per $1 spent and receive $10 reward certificates for every 300 points.",
+      "Look for free curbside pickup or free standard shipping on orders over $49 for extra savings."
+    ],
+    faqs: [
+      {
+        question: "How do I get $10 off at Dick's Sporting Goods today?",
+        answer: "You can get $10 off instantly by signing up for Dick's Sporting Goods text/email newsletter or redeeming verified ScoreCard reward codes at checkout on qualifying orders over $50."
+      },
+      {
+        question: "Where do I enter a promo code on DicksSportingGoods.com?",
+        answer: "In your shopping cart or checkout screen, find the 'Promo Code' section under Order Summary, enter your verified code, and click Apply."
+      },
+      {
+        question: "Does Dick's Sporting Goods offer free shipping?",
+        answer: "Yes, Dick's Sporting Goods offers free standard shipping for ScoreCard members on eligible orders of $49 or more."
+      }
+    ],
+    websiteUrl: 'https://www.10offpromocodes.com/get-10-off-at-dicks-sporting-goods-today/',
+    isTrending: true,
+    isPopular: true,
+  },
+  {
     id: 'walmart',
     name: 'Walmart',
     slug: 'walmart',
