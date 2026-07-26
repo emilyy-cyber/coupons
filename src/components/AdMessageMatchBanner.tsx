@@ -35,14 +35,8 @@ export const AdMessageMatchBanner: React.FC<AdMessageMatchBannerProps> = ({
       setTimeout(() => setCopied(false), 4000);
     }
 
-    // 3. Open affiliate link:
-    // GET CODE mode -> Open in current/back tab
-    // GET DEAL mode -> Open in new/next tab
-    if (topCouponCode) {
-      window.location.href = targetUrl;
-    } else {
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
-    }
+    // 3. Open affiliate link in NEW TAB (_blank) so our website stays open on current tab
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
 
     // 4. Scroll to coupons section in current tab
     const element = document.getElementById('active-coupons-section');

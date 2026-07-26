@@ -31,13 +31,12 @@ export const CouponCard: React.FC<CouponCardProps> = ({ coupon, onOpenModal, onS
       setCopied(false);
     }, 5000);
 
-    // 4. Open affiliate link:
-    // GET DEAL -> Open in new/next tab (_blank)
-    // GET CODE -> Open in current/back tab (_self / location.href)
-    if (isCode) {
-      window.location.href = targetUrl;
-    } else {
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    // 4. Open affiliate link in a NEW TAB (_blank) so our website stays open on the current tab
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+
+    // 5. Open modal on our website if callback is provided
+    if (onOpenModal) {
+      onOpenModal(coupon);
     }
   };
 

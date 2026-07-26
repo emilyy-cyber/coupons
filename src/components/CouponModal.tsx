@@ -25,12 +25,8 @@ export const CouponModal: React.FC<CouponModalProps> = ({ coupon, onClose }) => 
       setTimeout(() => setCopied(false), 4000);
     }
 
-    // Open target link: GET CODE in current/back tab, GET DEAL in new/next tab
-    if (coupon.code) {
-      window.location.href = targetUrl;
-    } else {
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
-    }
+    // Open affiliate link in a NEW TAB (_blank) so our website stays open on current tab with modal
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
